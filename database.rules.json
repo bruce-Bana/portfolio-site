@@ -1,0 +1,30 @@
+{
+  "rules": {
+    "rooms": {
+      "general": {
+        "messages": {
+          ".read": "auth != null",
+          "$messageId": {
+            ".write": "auth != null && !data.exists() && newData.child('uid').val() === auth.uid",
+            ".validate": "newData.hasChildren(['uid', 'name', 'text', 'createdAt']) && newData.numChildren() === 4",
+            "uid": { ".validate": "newData.isString() && newData.val() === auth.uid" },
+            "name": { ".validate": "newData.isString() && newData.val().length >= 2 && newData.val().length <= 24 && newData.val().matches(/^[A-Za-z0-9_ .-]+$/)" },
+            "text": { ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 500" },
+            "createdAt": { ".validate": "newData.isNumber() && newData.val() <= now + 5000 && newData.val() >= now - 60000" },
+            "$other": { ".validate": false }
+          }
+        },
+        "presence": {
+          ".read": "auth != null",
+          "$uid": {
+            ".write": "auth != null && auth.uid === $uid",
+            ".validate": "newData.hasChildren(['name', 'connectedAt']) && newData.numChildren() === 2",
+            "name": { ".validate": "newData.isString() && newData.val().length >= 2 && newData.val().length <= 24 && newData.val().matches(/^[A-Za-z0-9_ .-]+$/)" },
+            "connectedAt": { ".validate": "newData.isNumber() && newData.val() <= now + 5000" },
+            "$other": { ".validate": false }
+          }
+        }
+      }
+    }
+  }
+}
