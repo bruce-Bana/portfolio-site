@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#151722"><meta name="description" content="BanaChat — a friendly public chatroom. Join with a guest username.">
+<title>BanaChat — Public Chatroom</title><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="./"><span class="brand-icon">B</span><span>BanaChat</span></a>
+    <p class="section-label">CHAT ROOMS</p>
+    <div class="room active"><span>#</span> general <i></i></div>
+    <div class="sidebar-card"><span class="spark">✦</span><strong>Good conversations start here.</strong><p>Be kind, keep it friendly, and make everyone feel welcome.</p></div>
+    <div class="identity"><div class="avatar" id="myAvatar">G</div><div class="identity-text"><strong id="myName">Guest</strong><small><span class="green-dot"></span> Guest session</small></div><button id="changeName" class="icon-btn" title="Change name">✎</button></div>
+  </aside>
+  <main class="chat">
+    <header class="topbar"><button class="icon-btn menu" id="menuBtn" aria-label="Open menu">☰</button><div class="channel"><span class="hash">#</span><div><strong>general</strong><small>One room. Everyone welcome.</small></div></div><div class="top-actions"><span class="status" id="status"><i></i><span id="statusText">Setting up…</span></span><button class="icon-btn" id="aboutBtn" aria-label="About BanaChat">ⓘ</button></div></header>
+    <section class="scroll-area" id="scrollArea"><div class="welcome"><div class="welcome-hash">#</div><h1>Welcome to <em>#general</em></h1><p>This is the beginning of the conversation. Say hello to everyone!</p><div class="rule"><span></span> Keep it respectful <span></span></div></div><div id="messages" class="messages"></div><div class="empty" id="empty"><b>No messages yet</b><span>Be the first to say hello.</span></div></section>
+    <footer class="composer-wrap"><p class="hint" id="hint">Messages are public to everyone in this room.</p><form id="form" class="composer"><button type="button" id="emoji" class="emoji" aria-label="Insert emoji">☺</button><label class="sr-only" for="message">Message general</label><textarea id="message" rows="1" maxlength="500" placeholder="Set up Firebase to enable chat…" disabled></textarea><span class="count" id="count">0/500</span><button class="send" id="send" disabled aria-label="Send message">➤</button></form><div class="composer-foot"><span><kbd>Enter</kbd> to send · <kbd>Shift</kbd> + <kbd>Enter</kbd> for a new line</span><span>Be nice to each other <b>♥</b></span></div></footer>
+  </main>
+  <aside class="members"><div class="members-head"><span>IN THIS ROOM</span><b id="memberCount">0</b></div><p class="online-label"><i class="green-dot"></i> ONLINE</p><div id="members" class="member-list"><p class="muted">Connect Firebase to see members.</p></div><div class="privacy"><span>✦</span><strong>A little kindness goes a long way.</strong><p>This room is public. Never share passwords or sensitive personal information.</p></div></aside>
+</div>
+<div class="overlay" id="nameOverlay" hidden><section class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"><button class="close icon-btn" id="closeDialog" aria-label="Close">×</button><div class="brand-icon large">B</div><p class="section-label">YOUR CHAT IDENTITY</p><h2 id="dialogTitle">What should we call you?</h2><p class="muted">Choose a display name. No email or account form needed.</p><form id="nameForm"><label for="username">Display name</label><input id="username" maxlength="24" minlength="2" required placeholder="e.g. BlueFox" autocomplete="nickname"><small>2–24 characters. Names are not verified.</small><p class="error" id="nameError" role="alert"></p><button class="primary" id="join" type="submit">Join BanaChat <span>→</span></button></form><p class="fineprint">Messages in this public room can be seen by other visitors.</p></section></div>
+<div class="overlay" id="aboutOverlay" hidden><section class="dialog"><button class="close icon-btn" id="closeAbout" aria-label="Close">×</button><div class="brand-icon large">B</div><h2>About BanaChat</h2><p class="muted">A friendly public chatroom built for quick conversations.</p><div class="about-row"><span>Room</span><b>#general · Public</b></div><div class="about-row"><span>Identity</span><b>Guest username</b></div><div class="about-row"><span>Privacy</span><b>Messages are public</b></div><button class="primary" id="doneAbout">Got it</button></section></div>
+<div class="toast" id="toast" role="status"></div>
+<script type="module" src="app.js"></script>
+</body></html>
